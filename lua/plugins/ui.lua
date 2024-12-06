@@ -11,6 +11,13 @@ return {
       timeout = 10000,
     },
   },
+  -- Display inline hinst
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      inlay_hints = { enabled = false },
+    },
+  },
   --bufferline
   {
     "akinsho/bufferline.nvim",

@@ -19,7 +19,7 @@ return {
         local builtin = require("telescope.builtin")
         builtin.find_files({
           no_ignore = false,
-          hidden = true,
+          --hidden = true,
         })
       end,
       desc = "Current working directory list files",
@@ -39,6 +39,30 @@ return {
         builtin.buffers()
       end,
       desc = "Lists open buffers",
+    },
+    {
+      ";s",
+      function()
+        local builtin = require("telescope.builtin")
+        builtin.treesitter()
+      end,
+      desc = "Lists Function names, variables, from Treesitter",
+    },
+    {
+      ";;",
+      function()
+        local builtin = require("telescope.builtin")
+        builtin.resume()
+      end,
+      desc = "Resume the previous telescope picker",
+    },
+    {
+      ";e",
+      function()
+        local builtin = require("telescope.builtin")
+        builtin.diagnostics()
+      end,
+      desc = "Lists Diagnostics for all open buffers or a specific buffer",
     },
     {
       "sf",

@@ -17,6 +17,9 @@ keymap.set("n", "dw", "vb_d")
 --Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
 
+--Mode change
+keymap.set("i", "jj", "<Esc>", { desc = "Back to normal mode" })
+
 -- Jumplist
 keymap.set("n", "<C-m>", "<C-i>", opts)
 
