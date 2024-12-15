@@ -26,6 +26,10 @@ keymap.set("n", "<C-m>", "<C-i>", opts)
 keymap.set("n", "<Leader>o", "o<Esc>^Da", opts)
 keymap.set("n", "<Leader>O", "O<Esc>^Da", opts)
 
+-- Scroll down/up and center the cursor
+keymap.set("n", "<C-d>", "<C-d>zz", opts)
+keymap.set("n", "<C-u>", "<C-u>zz", opts)
+
 -- New tab
 --keymap.set("n", "te", ":tabedit")
 --keymap.set("n", "<tab>", ":tabnext<Return>", opts)
