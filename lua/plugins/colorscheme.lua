@@ -16,10 +16,4 @@ return {
       flavour = "mocha",
     },
   },
-
-  --add dracula
-  {
-    "Mofiqul/dracula.nvim",
-    priority = 1000,
-  },
 }
