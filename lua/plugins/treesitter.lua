@@ -5,11 +5,14 @@ return {
       ensure_installed = {
         "javascript",
         "typescript",
-        "css",
         "gitignore",
         "graphql",
         "scss",
         "json",
+        "html",
+        "css",
+        "prisma",
+        "dockerfile",
       },
     },
     config = function(_, opts)
