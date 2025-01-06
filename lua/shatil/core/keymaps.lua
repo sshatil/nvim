@@ -31,8 +31,9 @@ keymap.set("n", "<C-u>", "<C-u>zz", opts)
 --
 
 -- Split window
-keymap.set("n", "sv", ":split<Return>", opts)
-keymap.set("n", "ss", ":vsplit<Return>", opts)
+keymap.set("n", "ss", ":split<Return>")
+keymap.set("n", "sv", ":vsplit<Return>")
+keymap.set("n", "<leader>sd", "<cmd>close<CR>", { desc = "Close current split" })
 
 -- Move window
 keymap.set("n", "sh", "<C-w>h")
