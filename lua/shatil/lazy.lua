@@ -16,7 +16,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim
-require("lazy").setup("shatil.plugins", {
+require("lazy").setup({ { import = "shatil.plugins" }, { import = "shatil.plugins.lsp" } }, {
   checker = {
     enabled = true,
     notify = false,
