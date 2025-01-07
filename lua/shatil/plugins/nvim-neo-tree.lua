@@ -25,7 +25,7 @@ return {
     })
     -- Custom key mappings to toggle the file tree
     local keymap = vim.keymap
-    keymap.set("n", "<leader>ee", "<cmd>Neotree toggle<CR>", { desc = "Toggle file tree" })
-    keymap.set("n", "<leader>e", "<cmd>Neotree reveal<CR>", { desc = "Toggle file tree and reveal current file" })
+    keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Toggle file tree" })
+    keymap.set("n", "<leader>ee", "<cmd>Neotree reveal<CR>", { desc = "Toggle file tree and reveal current file" })
   end,
 }
