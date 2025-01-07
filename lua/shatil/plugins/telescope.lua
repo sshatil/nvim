@@ -11,5 +11,6 @@ return {
     keymap.set('n', ';s', builtin.live_grep, { desc = 'Telescope live grep' })
     keymap.set('n', '<leader>bl', builtin.buffers, { desc = 'Telescope buffers' })
     keymap.set('n', '<leader>bh', builtin.help_tags, { desc = 'Telescope help tags' })
+    keymap.set("n", "<leader>tl", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
   end,
 }
