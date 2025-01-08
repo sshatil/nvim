@@ -37,14 +37,43 @@ return {
     opts = {
       options = {
         -- Customize tab names with close icons
-        custom_areas = {
-          right = function()
-            return {
-              { text = "x", highlight = "BufferClose" }, -- Custom close icon (change  to your preferred icon)
-            }
-          end,
-        },
+        mode = "tabs",
       },
     },
+  },
+  --incline for filename
+
+  {
+    "b0o/incline.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    event = "BufReadPre",
+    priority = 1200,
+    config = function()
+      -- Access TokyoNight colors through LazyVim utility
+      local colors = require("tokyonight.colors").setup()
+
+      require("incline").setup({
+        hide = {
+          cursorline = true,
+          only_win = true,
+        },
+        highlight = {
+          groups = {
+            InclineNormal = { guibg = colors.bg_highlight, guifg = colors.fg },
+            InclineNormalNC = { guifg = colors.comment, guibg = colors.bg_statusline },
+          },
+        },
+        window = { margin = { vertical = 0, horizontal = 1 } },
+        render = function(props)
+          local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+          if vim.bo[props.buf].modified then
+            filename = "[+] " .. filename
+          end
+
+          local icon, color = require("nvim-web-devicons").get_icon_color(filename)
+          return { { icon, guifg = color }, { " " }, { filename } }
+        end,
+      })
+    end,
   },
 }
