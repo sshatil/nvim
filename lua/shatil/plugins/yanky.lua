@@ -1,16 +1,16 @@
 return {
 	"gbprod/yanky.nvim",
-	opts = {
-		ring = {
-			history_length = 50,
-		},
-		highlight = {
-			on_put = true,
-			on_yank = true,
-			timer = 150,
-		},
-	},
 	config = function()
+		require("yanky").setup({
+			ring = {
+				history_length = 50,
+			},
+			highlight = {
+				on_put = true,
+				on_yank = true,
+				timer = 150,
+			},
+		})
 		-- set keymaps
 		local keymap = vim.keymap
 
