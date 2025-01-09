@@ -1,14 +1,13 @@
 return {
   {
-    "telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-file-browser.nvim",
-    },
+    "ibhagwan/fzf-lua",
+    -- optional for icon support
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
       {
         "<leader>fp",
         function()
-          require("telescope.builtin").find_files({
+          require("fzf-lua").files({
             cwd = require("lazy.core.config").options.root,
           })
         end,
@@ -17,10 +16,9 @@ return {
       {
         ";f",
         function()
-          local builtin = require("telescope.builtin")
-          builtin.find_files({
+          require("fzf-lua").files({
             no_ignore = false,
-            --hidden = true,
+            -- hidden = true,
           })
         end,
         desc = "Current working directory list files",
@@ -28,102 +26,65 @@ return {
       {
         ";s",
         function()
-          local builtin = require("telescope.builtin")
-          builtin.live_grep()
+          require("fzf-lua").live_grep()
         end,
         desc = "Search for a string in current directory",
       },
       {
         "\\\\",
         function()
-          local builtin = require("telescope.builtin")
-          builtin.buffers()
+          require("fzf-lua").buffers()
         end,
         desc = "Lists open buffers",
       },
       {
         ";r",
         function()
-          local builtin = require("telescope.builtin")
-          builtin.treesitter()
+          require("fzf-lua").lsp_document_symbols()
         end,
-        desc = "Lists Function names, variables, from Treesitter",
+        desc = "Lists function names, variables, from LSP symbols",
       },
       {
         ";;",
         function()
-          local builtin = require("telescope.builtin")
-          builtin.resume()
+          require("fzf-lua").resume()
         end,
-        desc = "Resume the previous telescope picker",
+        desc = "Resume the previous fzf-lua picker",
       },
       {
-        ";e",
+        ";d",
         function()
-          local builtin = require("telescope.builtin")
-          builtin.diagnostics()
+          require("fzf-lua").diagnostics_document()
         end,
-        desc = "Lists Diagnostics for all open buffers or a specific buffer",
+        desc = "Lists diagnostics for the current buffer",
       },
       {
         "sf",
         function()
-          local telescope = require("telescope")
-
-          local function telescope_buffer_dir()
+          local function fzf_buffer_dir()
             return vim.fn.expand("%:p:h")
           end
 
-          telescope.extensions.file_browser.file_browser({
-            path = "%:p:h",
-            cwd = telescope_buffer_dir(),
+          require("fzf-lua").files({
+            cwd = fzf_buffer_dir(),
             respect_gitignore = false,
             hidden = true,
             grouped = true,
             previewer = false,
             initial_mode = "normal",
-            layout_config = { height = 40 },
+            layout = "default",
           })
         end,
         desc = "Open File Browser with the path of the current buffer",
       },
+      {
+        ";z",
+        function()
+          require("fzf-lua").spell_suggest()
+        end,
+        desc = "Show spelling suggestions",
+      },
     },
-    --file browser custom keys
-    config = function(_, opts)
-      local telescope = require("telescope")
-      local actions = require("telescope.actions")
-      local fb_actions = require("telescope").extensions.file_browser.actions
-      opts.extensions = {
-        file_browser = {
-          theme = "dropdown",
-          -- disables netrw and use telescope-file-browser in its place
-          hijack_netrw = true,
-          mappings = {
-            -- your custom insert mode mappings
-            ["n"] = {
-              -- your custom normal mode mappings
-              ["N"] = fb_actions.create,
-              ["h"] = fb_actions.goto_parent_dir,
-              ["/"] = function()
-                vim.cmd("startinsert")
-              end,
-              ["<C-u>"] = function(prompt_bufnr)
-                for i = 1, 10 do
-                  actions.move_selection_previous(prompt_bufnr)
-                end
-              end,
-              ["<C-d>"] = function(prompt_bufnr)
-                for i = 1, 10 do
-                  actions.move_selection_next(prompt_bufnr)
-                end
-              end,
-              ["<PageUp>"] = actions.preview_scrolling_up,
-              ["<PageDown>"] = actions.preview_scrolling_down,
-            },
-          },
-        },
-      }
-    end,
   },
   -- Disable flash.nvim
   { "folke/flash.nvim", enabled = false },
